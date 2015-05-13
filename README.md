@@ -12,4 +12,4 @@ Created with [Purecss.io](http://purecss.io) and [Polymer](http://polymer-projec
 License
 -------
 
-Open source under MIT License. (other than the logo used for default)
+The project is open source released under MIT License. (other than the logo used for default)
