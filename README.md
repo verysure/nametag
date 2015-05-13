@@ -8,3 +8,8 @@ Credit
 ------
 
 Created with [Purecss.io](http://purecss.io) and [Polymer](http://polymer-project.org). Designed by [verysure](http://www.mit.edu/~tonyw).
+
+License
+-------
+
+Open source under MIT License. (other than the logo used for default)
