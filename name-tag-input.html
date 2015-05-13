@@ -1,0 +1,162 @@
+<link rel="import" href="components/bower_components/polymer/polymer.html">
+
+<polymer-element name="name-tag-input" attributes="nametagtarget">
+    <template>
+        <link rel="stylesheet" href="pure-min.css">
+        <style>
+
+            label {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 20px;
+            }
+            legend {
+                font-size: 30px;
+                text-align: center;
+            }
+
+            .nametag-input {
+                max-width: 8.5in;
+                margin: 0 auto;
+            }
+
+            .number-input {
+                width: 1in;
+            }
+        </style>
+
+        <div class="nametag-input">
+            <form class="pure-form pure-form-aligned">
+                <fieldset>
+
+                    <legend>Design</legend>
+                    <div class="pure-u-1-3">
+                        <label>Width</label>
+                        <input type="number" step="0.1" class="number-input" value="{{ntwidth}}">
+                        <label>inch</label>
+                    </div>
+
+                    <div class="pure-u-1-3">
+                        <label>Height</label>
+                        <input type="number" step="0.1" class="number-input" value="{{ntheight}}">
+                        <label>inch</label>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div>
+                        <label>Logo URL:</label>
+                        <input type="text" value="{{logourl}}">
+
+                        <label>Position:</label>
+                        <select value="{{position}}">
+                            <option value="br">Bottom Right</option>
+                            <option value="bl">Bottom Left</option>
+                            <option value="tr">Top Right</option>
+                            <option value="tl">Top Left</option>
+                        </select>
+                    </div>
+
+                    <legend>Text</legend>
+
+                    <div class="pure-control-group">
+                        <label>First Name: <br>(one per line)</label>
+                        <textarea value="{{firstnames}}"></textarea>
+                        Fontsize: <input type="number" step="0.01" class="number-input" value="{{namesize}}"> inch
+                    </div>
+                    <div class="pure-control-group">
+                        <label>Last Name: <br>(optional)</label>
+                        <textarea value="{{lastnames}}"></textarea>
+                    </div>
+                    <div class="pure-control-group">
+                        <label>Affiliation:</label>
+                        <textarea value="{{universities}}"></textarea>
+                        Fontsize: <input type="number" step="0.01" class="number-input" value="{{affsize}}"> inch
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </template>
+
+    <script>
+        function update_nametag_list (object) {
+            var nametaglist = document.getElementById(object.nametagtarget);
+            var firstnameslist = object.firstnames.split('\n');
+            var lastnameslist = object.lastnames.split('\n');
+            var universitieslist = object.universities.split('\n');
+            var maxlength = Math.max(firstnameslist.length, lastnameslist.length, universitieslist.length)
+
+            var nametags = [];
+            for (var i=0; i <maxlength; i++) {
+                var firstname = firstnameslist[i];
+                var lastname = lastnameslist[i];
+                var university = universitieslist[i];
+
+                if (firstname === undefined || firstname === "") {
+                    firstname = "First";
+                }
+                if (lastname === undefined || lastname === "") {
+                    if (firstname === "First") {
+                        lastname = "Last";
+                    }
+                    else {
+                        lastname = "";
+                    }
+                }
+                if (university === undefined || university === "") {
+                    university = "Affiliation";
+                }
+
+                nametags.push({
+                    firstname: firstname,
+                    lastname: lastname,
+                    university: university,
+                });
+            }
+
+            nametaglist.setAttribute('nametags', JSON.stringify(nametags));
+        }
+
+        function update_design (object) {
+            console.log('update');
+            var nametaglist = document.getElementById(object.nametagtarget);
+
+            nametaglist.setAttribute('designs', JSON.stringify({
+                position: object.position,
+                logourl: object.logourl,
+                ntheight: object.ntheight,
+                ntwidth: object.ntwidth,
+                namesize: object.namesize,
+                affsize: object.affsize,
+            }));
+
+        }
+
+
+        Polymer('name-tag-input', {
+            firstnames: "",
+            lastnames: "",
+            universities: "",
+            position: "br",
+            logourl: "http://www.eitc.org/logo.jpg",
+            ntheight: 3,
+            ntwidth: 4,
+            namesize: 0.35,
+            affsize: 0.25,
+
+            firstnamesChanged: function () {update_nametag_list(this); },
+            lastnamesChanged: function () {update_nametag_list(this); },
+            universitiesChanged: function () {update_nametag_list(this); },
+
+            positionChanged: function () {update_design(this); },
+            logourlChanged: function () {update_design(this); },
+            ntwidthChanged: function () {update_design(this); },
+            ntheightChanged: function () {update_design(this); },
+            namesizeChanged: function () {update_design(this); },
+            affsizeChanged: function () {update_design(this); },
+
+        });
+    </script>
+    
+         
+</polymer-element>

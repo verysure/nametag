@@ -1,0 +1,18 @@
+
+body { margin: 0;}
+@page { margin: 0;}
+
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    name-tag-list, name-tag-list * {
+        visibility: visible;
+    }
+    name-tag-list {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

@@ -1,0 +1,58 @@
+<link rel="import" href="components/bower_components/polymer/polymer.html">
+<link rel="import" href="name-tag.html">
+
+<polymer-element name="name-tag-list" attributes="nametags designs">
+
+    <template>
+    
+        <style>
+            .nametag-canvas {
+                margin: 0 auto;
+                width: 8.5in;
+            }
+        </style>
+
+        <div class="nametag-canvas">
+            <template repeat="{{nametag in nametagslist}}">
+                <name-tag
+                    firstname="{{nametag.firstname}}"
+                    lastname="{{nametag.lastname}}"
+                    university="{{nametag.university}}"
+                    ntwidth="{{designs.ntwidth}}",
+                    ntheight="{{designs.ntheight}}",
+                    namesize="{{designs.namesize}}",
+                    affsize="{{designs.affsize}}",
+                    position="{{designs.position}}",
+                    logourl="{{designs.logourl}}"
+                    >
+                </name-tag>
+            </template>
+        </div>
+        
+    </template>
+
+    <script>
+        Polymer('name-tag-list', {
+            nametags: '[{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"}]',
+            designs: {},
+            
+            ready: function () {
+                this.nametagslist = JSON.parse(this.nametags);
+            },
+            nametagsChanged: function () {
+                this.nametagslist = JSON.parse(this.nametags);
+            },
+
+            // designsChanged: function () {
+            //     var data = JSON.parse(this.designs);
+
+
+            // },
+
+        });
+
+
+    </script>
+    
+         
+</polymer-element>
