@@ -7,4 +7,4 @@ Simple webapp for creating many nametags.
 Credit
 ------
 
-Created with [Purecss.io](purecss.io) and [Polymer](polymer-project.org). Designed by [verysure](www.mit.edu/~tonyw).
+Created with [Purecss.io](http://purecss.io) and [Polymer](http://polymer-project.org). Designed by [verysure](http://www.mit.edu/~tonyw).
