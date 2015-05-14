@@ -2,9 +2,13 @@
 <html>
 <head>
     <title>Nametag Creator</title>
+    <script src="components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
+
     <link rel="import" href="name-tag-input.html">
     <link rel="import" href="name-tag-list.html">
     <link rel="stylesheet" href="pure-min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="printstyle.css" type="text/css">
 </head>
@@ -18,7 +22,7 @@
     <name-tag-input nametagtarget="name-tag-list"></name-tag-input>
 
     <h2>Output</h2>
-    <h3>Press Ctrl+P to print the output</h3>
+    <h3>Press <button onclick="window.print();" class="pure-button button-small pure-button-primary"><i class="fa fa-print"></i> Print</button> to print the following output.</h3> 
     <!-- canvas for the print -->
     <name-tag-list id="name-tag-list"></name-tag-list>
 

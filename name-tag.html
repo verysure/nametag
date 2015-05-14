@@ -7,10 +7,6 @@
 
             .nametag {
                 margin: 0.03in 0in 0.03in 0.05in;
-/*                width: 4in;
-                height: 3in;*/
-                width: {{ntwidth}}in;
-                height: {{ntheight}}in;
                 display: inline-flex;
                 border-style: solid;
                 border-width: 0.02in;
@@ -18,19 +14,17 @@
             }
 
             .nametag-text {
-                font-family: 'Open Sans', sans-serif;
+                font-family: sans-serif;
                 margin: auto;
             }
 
             .nametag-name {
-                font-size: {{namesize}}in;
                 font-weight: bold;
                 text-align: center;
                 vertical-align: middle;
             }
 
             .nametag-uni {
-                font-size: {{affsize}}in;
                 font-style: italic;
                 text-align: center;
             }
@@ -45,10 +39,6 @@
                 width: 0.9in;
                 height: 0.6in;
                 position: absolute;
-                {{vertical}}
-                {{horizontal}}
-                /*bottom: 0px;*/
-                /*right: 0px;*/
                 z-index: -99;
             }
 
@@ -60,18 +50,18 @@
             }
         </style>
         
-        <div class="nametag">
+        <div class="nametag" style="width: {{ntwidth}}in; height: {{ntheight}}in; ">
             <div class="nametag-text">
-                <div class="nametag-name">
+                <div class="nametag-name" style="font-size: {{namesize}}in;">
                     {{firstname}} {{lastname}}
                 </div>
 
-                <div class="nametag-uni">
+                <div class="nametag-uni" style="font-size: {{affsize}}in;">
                     {{university}}
                 </div>
             </div>
 
-            <img class="nametag-logo" src="{{logourl}}">
+            <img class="nametag-logo" src="{{logourl}}" style="{{str_position}}">
         </div>
         
     </template>
@@ -79,17 +69,13 @@
     <script>
         function setPosition(object) {
             if (object.position === 'tl') {
-                object.vertical = "top: 0px;";
-                object.horizontal = "left: 0px;";
+                object.str_position = "top: 0px;left: 0px;";
             } else if (object.position === 'bl') {
-                object.vertical = "bottom: 0px;";
-                object.horizontal = "left: 0px;";
+                object.str_position = "bottom: 0px;left: 0px;";
             } else if (object.position === 'tr') {
-                object.vertical = "top: 0px;";
-                object.horizontal = "right: 0px;";
+                object.str_position = "top: 0px;right: 0px;";
             } else {
-                object.vertical = "bottom: 0px;";
-                object.horizontal = "right: 0px;";
+                object.str_position = "bottom: 0px;right: 0px;";
             }
         }
 
