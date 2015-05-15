@@ -1,7 +1,7 @@
 <link rel="import" href="components/bower_components/polymer/polymer.html">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,400' rel='stylesheet' type='text/css'>
 
-<polymer-element name="name-tag" attributes="firstname lastname university ntwidth ntheight namesize affsize position logourl">
+<polymer-element name="name-tag" attributes="firstname lastname university ntwidth ntheight namesize affsize position logourl order">
 
     <template>
         <style>
@@ -55,7 +55,7 @@
         <div class="nametag" style="width: {{ntwidth}}in; height: {{ntheight}}in; ">
             <div class="nametag-text">
                 <div class="nametag-name" style="font-size: {{namesize}}in;">
-                    {{firstname}} {{lastname}}
+                    {{nametext}}
                 </div>
 
                 <div class="nametag-uni" style="font-size: {{affsize}}in;">
@@ -81,6 +81,15 @@
             }
         }
 
+        function setnametext(object) {
+            console.log('setname');
+            if (object.order === 'first') {
+                object.nametext = object.firstname + " " + object.lastname;
+            } else {
+                object.nametext = object.lastname + ", " + object.firstname;
+            }
+        }
+
 
         Polymer('name-tag', {
             firstname: 'Firstname',
@@ -92,9 +101,14 @@
             affsize: 0.25,
             position: 'br',
             logourl: 'http://www.eitc.org/logo.jpg',
+            order: 'first',
 
-            ready: function () {setPosition(this)},
+            ready: function () {
+                setPosition(this);
+                setnametext(this);
+            },
             positionChanged: function () {setPosition(this)},
+            orderChanged: function () {setnametext(this); }
         });
     </script>
     

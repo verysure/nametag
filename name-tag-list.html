@@ -18,12 +18,13 @@
                     firstname="{{nametag.firstname}}"
                     lastname="{{nametag.lastname}}"
                     university="{{nametag.university}}"
-                    ntwidth="{{designs.ntwidth}}",
-                    ntheight="{{designs.ntheight}}",
-                    namesize="{{designs.namesize}}",
-                    affsize="{{designs.affsize}}",
-                    position="{{designs.position}}",
+                    ntwidth="{{designs.ntwidth}}"
+                    ntheight="{{designs.ntheight}}"
+                    namesize="{{designs.namesize}}"
+                    affsize="{{designs.affsize}}"
+                    position="{{designs.position}}"
                     logourl="{{designs.logourl}}"
+                    order="{{designs.order}}"
                     >
                 </name-tag>
             </template>
@@ -43,11 +44,7 @@
                 this.nametagslist = JSON.parse(this.nametags);
             },
 
-            // designsChanged: function () {
-            //     var data = JSON.parse(this.designs);
 
-
-            // },
 
         });
 

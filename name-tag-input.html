@@ -68,6 +68,11 @@
                     <div class="pure-control-group">
                         <label>Last Name: <br>(optional)</label>
                         <textarea value="{{lastnames}}"></textarea>
+
+
+                        <label class="pure-checkbox">
+                            <input type="checkbox" checked="{{check}}">Last name first 
+                        </label>
                     </div>
                     <div class="pure-control-group">
                         <label>Affiliation:</label>
@@ -119,8 +124,12 @@
         }
 
         function update_design (object) {
-            console.log('update');
             var nametaglist = document.getElementById(object.nametagtarget);
+            var order = 'first';
+
+            if (object.check) {
+                order = 'last';
+            }
 
             nametaglist.setAttribute('designs', JSON.stringify({
                 position: object.position,
@@ -129,6 +138,7 @@
                 ntwidth: object.ntwidth,
                 namesize: object.namesize,
                 affsize: object.affsize,
+                order: order,
             }));
 
         }
@@ -144,6 +154,7 @@
             ntwidth: 4,
             namesize: 0.35,
             affsize: 0.25,
+            check: false,
 
             firstnamesChanged: function () {update_nametag_list(this); },
             lastnamesChanged: function () {update_nametag_list(this); },
@@ -155,6 +166,7 @@
             ntheightChanged: function () {update_design(this); },
             namesizeChanged: function () {update_design(this); },
             affsizeChanged: function () {update_design(this); },
+            checkChanged: function () {update_design(this); },
 
         });
     </script>
