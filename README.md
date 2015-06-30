@@ -1,7 +1,7 @@
 Nametag Creator
 ===============
 
-Simple webapp for creating many nametags. This webapp is originally written for an [EITC](http://www.eitc.org/) event but released for general design and usage. Test.
+Simple webapp for creating many nametags. This webapp is originally written for an [EITC](http://www.eitc.org/) event but released for general design and usage.
 
 
 Credit
