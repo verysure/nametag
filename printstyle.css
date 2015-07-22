@@ -35,7 +35,7 @@ h3 {
     }
     name-tag-list {
         position: absolute;
-        left: 0;
-        top: 0;
+        left: 15px;
+        top: 80px;
     }
 }
