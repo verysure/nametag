@@ -1,0 +1,87 @@
+<link rel="import" href="components/bower_components/polymer/polymer.html">
+
+<polymer-element name="name-tag-pdf" attributes="nametags designs">
+
+    <template>
+
+        <style>
+            .nametagpdf {
+                display: block;
+                margin: 0 auto 150px auto;
+            }
+        </style>
+
+        <iframe id="pdf-frame" class="nametagpdf" frameborder="0" height="600" width="800" src="{{pdfsource}}" align="middle"></iframe>
+
+
+    </template>
+
+
+
+    <script>
+        function drawNametag(doc, nametag, design) {
+            nametag = nametag || {};
+            firstname = nametag.firstname || 'First';
+            lastname = nametag.lastname || 'Last';
+            university = nametag.university || 'University';
+
+            var name;
+            if (lastname === 'Last' && firstname !== 'First') {
+                name = firstname;
+            } else if (design.order === 'first') {
+                name = firstname + ' ' + lastname;
+            } else {
+                name = lastname + ', ' + firstname;
+            }
+
+
+            doc.createNametag(name, university, {
+                width: design.ntwidth,
+                height: design.ntheigth,
+                namesize: design.namesize*72.0,
+                affsize: design.affsize*72.0,
+                position: design.position,
+                logo: design.logourl
+            });
+        }
+
+
+        Polymer('name-tag-pdf', {
+            nametags: '[{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"},{"firstname": "First", "lastname": "Last", "university": "University"}]',
+            designs: {},
+
+            ready: function () {
+                var doc = new jsPDF('p', 'in', 'letter');
+                doc.setFont('helvetica', 'normal');
+                var design = this.designs;
+                JSON.parse(this.nametags).forEach(function (nametag){
+                    drawNametag(doc, nametag, design);
+                });
+                this.pdfsource = doc.output('datauristring');
+            },
+            nametagsChanged: function () {
+                var doc = new jsPDF('p', 'in', 'letter');
+                doc.setFont('helvetica', 'normal');
+                var design = this.designs;
+                JSON.parse(this.nametags).forEach(function (nametag){
+                    drawNametag(doc, nametag, design);
+                });
+                this.pdfsource = doc.output('datauristring');
+            },
+            designsChanged: function () {
+                var doc = new jsPDF('p', 'in', 'letter');
+                doc.setFont('helvetica', 'normal');
+                var design = this.designs;
+                JSON.parse(this.nametags).forEach(function (nametag){
+                    drawNametag(doc, nametag, design);
+                });
+                this.pdfsource = doc.output('datauristring');
+            },
+
+        });
+
+
+    </script>
+
+
+</polymer-element>

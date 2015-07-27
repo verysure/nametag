@@ -4,9 +4,16 @@
     <title>Nametag Creator</title>
     <script src="components/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
+    <script src="/nametag/js/jspdf.js" charset="utf-8"></script>
+    <script src="/nametag/js/jspdf.plugin.cell.js" charset="utf-8"></script>
+    <script src="/nametag/js/jspdf.plugin.standard_fonts_metrics.js" charset="utf-8"></script>
+    <script src="/nametag/js/jspdf.plugin.split_text_to_size.js" charset="utf-8"></script>
+    <script src="/nametag/js/jspdf.plugin.addimage.js" charset="utf-8"></script>
+    <script src="/nametag/js/nametag.js" charset="utf-8"></script>
 
     <link rel="import" href="name-tag-input.html">
-    <link rel="import" href="name-tag-list.html">
+    <!-- <link rel="import" href="name-tag-list.html"> -->
+    <link rel="import" href="name-tag-pdf.html">
     <link rel="stylesheet" href="pure-min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -19,14 +26,17 @@
     </div>
 
     <!-- Input for the nametag -->
-    <name-tag-input nametagtarget="name-tag-list"></name-tag-input>
+    <name-tag-input nametagtarget="name-tag-pdf"></name-tag-input>
 
     <h2>Output</h2>
-    <h3>Press <button onclick="window.print();" class="pure-button button-small pure-button-primary"><i class="fa fa-print"></i> Print</button> to print the following output.</h3> 
-    <!-- canvas for the print -->
-    <name-tag-list id="name-tag-list"></name-tag-list>
+    <h3>You may save or print on the PDF onscreen buttons (in the bottom of the PDF area).</h3>
+
+    <name-tag-pdf id="name-tag-pdf"></name-tag-pdf>
+
+
+
+
 
 
 </body>
 </html>
-
